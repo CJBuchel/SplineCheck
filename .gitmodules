@@ -1,0 +1,4 @@
+[submodule "WayFinder"]
+	path = WayFinder
+	url = https://github.com/A-Loose-Screw/WayFinder.git
+	branch = WayFinder4
