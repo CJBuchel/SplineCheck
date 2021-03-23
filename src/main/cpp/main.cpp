@@ -4,6 +4,10 @@
 
 int main() {
 
+	/**
+	 * ---------- General Path Testing --------------
+	 */
+
 	// Hermite trajectory
 	wayfinder::Path<wayfinder::Hermite::Spline2D> pathHermite;
 	pathHermite.setTrajectory({{
@@ -45,6 +49,29 @@ int main() {
 
 	std::cout << "Path Linear output: " << pathLinear.get()->waypoints.points[1].x << std::endl;
 
-	std::cout << "Program Finished" << std::endl;
+	/**
+	 * -------------------- Smart Pathing ------------------- (Testing)
+	 */
+	wayfinder::Path<wayfinder::CatmullRom::Spline2D> path1;
+	path1.setTrajectory({{
+		{0,0},
+		{0,0}
+	}});
+
+	wayfinder::Path<wayfinder::Hermite::Spline2D> path2;
+	path2.setTrajectory({{
+		{
+			{0,0},
+			{0,0},
+			{0,0},
+			{0,0}
+		}
+	}});
+
+	/**
+	 * Spline with Catmull and Hermite combination
+	 */
+	wayfinder::SmartPath<typeof(path1), typeof(path2)> smartPath(path1, path2, "Test SmartPath");
+	smartPath.printPaths();
 	return 0;
 }
